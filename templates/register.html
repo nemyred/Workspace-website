@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% from "bootstrap5/form.html" import render_form %}
+{% block content %}
+
+<main class="container form-signin w-100 m-auto" style="max-width:450px">
+   <img class="mb-4 rounded-4" src="{{ url_for('static', filename='assets/coffee.jpg') }}" alt="" width="82" height="67">
+    <h1 class="h3 mb-3 fw-normal">Please fill the form below </h1>
+  <!--Rendering the registration form here-->
+      {{render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+
+</main>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+</body>

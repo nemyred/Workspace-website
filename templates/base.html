@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    {% block styles %}
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/nordwood.jpg') }}"/>
+    <link href="sign-in.css" rel="stylesheet">
+
+    <!-- Load Bootstrap-Flask CSS here -->
+    {{ bootstrap.load_css() }}
+    <!-- Link to the styles.css here to apply styling to all the child templates.-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-dark bg-dark fixed-top py-4" aria-label="First navbar example">
+
+    <div class="container-fluid d-flex justify-content-end">
+        <a class="navbar-brand me-auto p-2 fw-bold" href="{{ url_for('home') }}">EXPLORE WORKSPACES</a>
+        {% if current_user.present %}
+        <a class="navbar-brand  fw-bold d-flex " style="width: ;" href="{{ url_for('home') }}">{{ current_user.name.upper() }}</a>
+        {% else %}
+        <a class="navbar-brand  fw-bold d-flex " style="width: ;" href="{{ url_for('login') }}">JOIN THE COMMUNITY</a>
+        {% endif %}
+
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+        <ul class="navbar-nav me-auto mb-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+              {% if not current_user.present %}
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+              {% else %}
+              <a class="nav-link" href="{{ url_for('home') }}"> {{ current_user.name }} </a>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+              {% endif %}
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Contribute</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{ url_for('cafes') }}">Review</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('cafes') }}">Comment</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('add') }}">Add Cafe</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form role="search">
+          <input class="form-control" name="search" type="search" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+
+    <div class="b-example-divider mb-5 my-5 py-3"></div>
+
+    {% block content %}{% endblock %}
+
+  <!-- Footer-->
+           <footer class="border-top py-3 mt-5 ">
+          <div class="container px-4 px-lg-5">
+              <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7">
+                      <ul class="list-inline text-center">
+                          <li class="list-inline-item">
+                              <a href="https://twitter.com/Nemyred">
+                                  <span class="fa-stack fa-lg">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                  </span>
+                              </a>
+                          </li>
+                          <li class="list-inline-item">
+                              <a href="http://linkedin.com/in/callistus-chinemerem-ab3842242">
+                                  <span class="fa-stack fa-lg">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                                  </span>
+                              </a>
+                          </li>
+                          <li class="list-inline-item">
+                              <a href="https://github.com/nemyred">
+                                  <span class="fa-stack fa-lg">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                  </span>
+                              </a>
+                          </li>
+                      </ul>
+
+
+                      <div class="small text-center text-muted fst-italic">Copyright &copy; RedX 2023</div>
+                  </div>
+              </div>
+          </div>
+      </footer>
+
+  {% block scripts %}
+      <!-- Optional JavaScript -->
+      {{ bootstrap.load_js() }}
+  {% endblock %}
+  </body>
+</html>

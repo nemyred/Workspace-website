@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}Add A New Cafe{% endblock %}
+{% block content %}
+<main class="mb-4">
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='body') }}
+        {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

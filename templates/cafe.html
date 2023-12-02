@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container px-4 py-5 mt-5 " id="custom-cards">
+    <h2 class="pb-2 border-bottom fw-bold display-4">Available Cafes</h2>
+
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4  py-5">
+      {% for cafe in cafes %}
+      <div class="col ">
+        <div class="card card-cover  text-bg-dark rounded-3 shadow-lg" >
+          <span>   <img src="{{ cafe.img_url }}" class="card-img-top rounded-1 mt-1" alt="..."> </span>
+          <div class=" d-flex flex-column mx-5 pb-3 text-white text-shadow-1" >
+            <a href="{{ url_for('choice_cafes', cafe_id=cafe.id) }}">
+              <h3 class="pt-2 mt-5 mb-4 display-6 text-white lh-1 fw-bold">{{ cafe.name }}</h3>
+            </a>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="{{ cafe.img_url }}" alt="cafe" width="42" height="42" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-4 ">
+                <a href="{{ cafe.map_url }}">
+                  <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map mx-2"  viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8z"/>
+                    <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+                  </svg>
+                </a>
+                  <small>{{ cafe.location }}</small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
+                <small></small>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+
+
+  </div>
+
+{% endblock %}

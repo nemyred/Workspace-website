@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% from "bootstrap5/form.html" import render_form %}
+
+
+{% block content %}
+
+<!--<body class="d-flex align-items-center py-4 bg-body-tertiary">-->
+  <main class="container mt-5" style="max-width:400px">
+     <img class="mb-4 rounded-4" src="{{ url_for('static', filename='assets/coffee.jpg') }}" alt="" width="82" height="67">
+      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class=flashes>
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+  <!--Rendering the registration form here-->
+      {{render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+      <div class="b-example-divider mb-2 py-1"></div>
+
+      <a href="{{ url_for('register') }}" class="mt-4 my-4 fw-bold">Not a registered member? </a>
+
+  </main>
+<!--</body>-->
+{% endblock %}

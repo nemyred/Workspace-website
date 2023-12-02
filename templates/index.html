@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Coffee and Wifi{% endblock %}
+
+{% block content %}
+<div class="container marketing">
+    <!-- START THE FEATURETTES -->
+    <hr class="featurette-divider ">
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-bold text-center fw-normal py-5 display-3">☕️ Coffee & Wifi 💻</h2>
+        <p class="lead text-center fw-semibold display-5">Want to work in a cafe but need power and wifi?</p>
+      </div>
+      <div class="col-md-5 ">
+        <img class="img-thumbnail" height="600px" width="800px" src="{{ url_for('static', filename='assets/joseph.jpg') }}">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+
+<div class="jumbotron text-center my-3 " style="background:transparent !important">
+  <div class="container">
+    <h1 class="display-3 fw-bold">You've found the right place! 😁  </h1>
+    <hr class="my-4" />
+    <h3 class="fw-bold ">
+      Checkout my collection of cafes with data on
+      power socket availability, wifi speed and coffee quality.
+    </h3>
+    <a
+      class="btn btn-warning btn-lg w-25"
+      href="{{ url_for('cafes') }}"
+      role="button"
+      >Show Me!</a
+    >
+  </div>
+</div>
+
+{% endblock %}
