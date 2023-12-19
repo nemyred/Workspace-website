@@ -230,7 +230,7 @@ def add():
             can_take_calls=form.calls.data,
             coffee_price=form.coffee_price.data,
             author=current_user,
-            date=date.today().strftime("%B %d, %Y")
+            date=datetime.date.today().strftime("%B %d, %Y")
         )
         db.session.add(new_cafe)
         db.session.commit()
