@@ -1,4 +1,4 @@
-from datetime import date
+import datetime
 from flask import Flask, abort, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
@@ -13,6 +13,7 @@ import os
 # prints random digits
 # import uuid
 # m = uuid.uuid4().hex
+current_year = datetime.datetime.now().year
 
 '''
 Red underlines? Install the required packages first: 
@@ -170,12 +171,12 @@ def register():
         # This line will authenticate the user with Flask-Login
         login_user(new_user)
         return redirect(url_for("home"))
-    return render_template("register.html", form=form, current_user=current_user)
+    return render_template("register.html", form=form, current_user=current_user, year=current_year)
 
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", year=current_year)
 
 
 
@@ -183,7 +184,7 @@ def home():
 def cafes():
     result = db.session.execute(db.select(Cafe).order_by(Cafe.id))
     all_cafes = result.scalars().all()
-    return render_template('cafe.html', cafes=all_cafes)
+    return render_template('cafe.html', cafes=all_cafes, year=current_year)
 
 
 @app.route('/<cafe_id>', methods=['GET', 'POST'])
@@ -205,7 +206,8 @@ def choice_cafes(cafe_id):
         db.session.add(new_comment)
         db.session.commit()
         return render_template('single_cafe.html')
-    return render_template('single_cafe.html', cafe=result, current_user=current_user, form=comment_form)
+    return render_template('single_cafe.html', cafe=result, current_user=current_user,
+                           form=comment_form, year=current_year)
 
 
 # Use a decorator so only an admin user can create new posts
@@ -233,7 +235,7 @@ def add():
         db.session.add(new_cafe)
         db.session.commit()
         return redirect(url_for("cafes"))
-    return render_template("add.html", form=form, current_user=current_user)
+    return render_template("add.html", form=form, current_user=current_user, year=current_year)
 
 
 @app.route("/login",  methods=["GET", "POST"])
@@ -256,7 +258,7 @@ def login():
             login_user(user)
             return redirect(url_for('cafes'))
 
-    return render_template("login.html", form=form, current_user=current_user)
+    return render_template("login.html", form=form, current_user=current_user, year=current_year)
 
 
 @app.route('/logout')

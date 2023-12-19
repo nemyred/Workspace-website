@@ -36,7 +36,7 @@
 
     <div class="container-fluid d-flex justify-content-end">
         <a class="navbar-brand me-auto p-2 fw-bold" href="{{ url_for('home') }}">EXPLORE WORKSPACES</a>
-        {% if current_user.present %}
+        {% if current_user.is_authenticated %}
         <a class="navbar-brand  fw-bold d-flex " style="width: ;" href="{{ url_for('home') }}">{{ current_user.name.upper() }}</a>
         {% else %}
         <a class="navbar-brand  fw-bold d-flex " style="width: ;" href="{{ url_for('login') }}">JOIN THE COMMUNITY</a>
@@ -52,7 +52,7 @@
             <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
           </li>
           <li class="nav-item">
-              {% if not current_user.present %}
+              {% if not current_user.is_authenticated %}
               <a class="nav-link" href="{{ url_for('login') }}">Login</a>
               {% else %}
               <a class="nav-link" href="{{ url_for('home') }}"> {{ current_user.name }} </a>
@@ -116,7 +116,7 @@
                       </ul>
 
 
-                      <div class="small text-center text-muted fst-italic">Copyright &copy; RedX 2023</div>
+                      <div class="small text-center text-muted fst-italic">Copyright &copy; RedX {{ year }}</div>
                   </div>
               </div>
           </div>
