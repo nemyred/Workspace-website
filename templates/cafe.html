@@ -7,11 +7,11 @@
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4  py-5">
       {% for cafe in cafes %}
       <div class="col ">
-        <div class="card card-cover  text-bg-dark rounded-3 shadow-lg" >
+        <div class="card card-cover  text-bg-dark rounded-3 shadow-lg" style="height: 32rem;" >
           <span>   <img src="{{ cafe.img_url }}" class="card-img-top rounded-1 mt-1" height="300px" alt="workspace image"> </span>
           <div class=" d-flex flex-column mx-5 pb-3 text-white text-shadow-1" >
             <a href="{{ url_for('choice_cafes', cafe_id=cafe.id) }}">
-              <h3 class="pt-2 mt-5 mb-4  text-white lh-1 fw-bold">{{ cafe.name }}</h3>
+              <h3 class="cafe pt-2 mt-5 mb-4  text-white lh-1 fw-bold">{{ cafe.name }}</h3>
             </a>
             <ul class="d-flex list-unstyled mt-auto">
               <li class="me-auto">
